@@ -1,0 +1,106 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+}
+
+input {
+    margin: 5px 0;
+    padding: 5px;
+}
+
+button {
+    margin: 5px 0 15px 0;
+    padding: 5px 10px;
+}
+
+p {
+    color: green;
+    font-weight: bold;
+}
+
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: linear-gradient(120deg, #e0eafc, #cfdef3);
+    min-height: 100vh;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    background: #fff;
+    padding: 32px 24px;
+    border-radius: 16px;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.12);
+    max-width: 350px;
+    width: 100%;
+    text-align: center;
+}
+
+h2 {
+    margin-top: 0;
+    color: #3a7bd5;
+    font-weight: 600;
+}
+
+input {
+    margin: 8px 0;
+    padding: 10px;
+    width: 90%;
+    border: 1px solid #b0c4de;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: border-color 0.2s;
+}
+input:focus {
+    border-color: #3a7bd5;
+    outline: none;
+}
+
+button {
+    margin: 10px 0 20px 0;
+    padding: 10px 0;
+    width: 95%;
+    background: linear-gradient(90deg, #3a7bd5, #00d2ff);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(58,123,213,0.08);
+    transition: background 0.2s;
+}
+button:hover {
+    background: linear-gradient(90deg, #00d2ff, #3a7bd5);
+}
+
+#mensagem {
+    color: #fff;
+    background: #3a7bd5;
+    padding: 10px;
+    border-radius: 8px;
+    margin: 10px 0;
+    font-weight: bold;
+    box-shadow: 0 2px 8px rgba(58,123,213,0.08);
+    display: inline-block;
+    min-width: 80px;
+}
+
+#loading {
+    color: #3a7bd5;
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+@media (max-width: 500px) {
+    .container {
+        padding: 16px 8px;
+        border-radius: 8px;
+        max-width: 98vw;
+    }
+    input, button {
+        font-size: 0.95rem;
+    }
+}
