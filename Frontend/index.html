@@ -1,25 +1,133 @@
+
 <!DOCTYPE html>
-<html>
+<html lang="pt-br">
 <head>
-    <title>Cadastro/Login Professor</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="utf-8" />
+  <title>Projeto Educacao - AC1</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; max-width:800px; }
+    form { margin-bottom: 20px; }
+    input { padding:8px; margin:4px 0; display:block; width:100%; max-width:400px; }
+    button { padding:8px 12px; }
+    .msg { margin:8px 0; color: green; }
+    .err { color: red; }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <h2>Cadastro</h2>
-        <input type="text" id="nome" placeholder="Nome"><br>
-        <input type="email" id="email" placeholder="Email"><br>
-        <input type="password" id="senha" placeholder="Senha"><br>
-        <button onclick="cadastrar()">Cadastrar</button>
+  <h1>AcadSys </h1>
 
-        <h2>Login</h2>
-        <input type="email" id="loginEmail" placeholder="Email"><br>
-        <input type="password" id="loginSenha" placeholder="Senha"><br>
-        <button onclick="logar()">Login</button>
+  <h2>Professor — Cadastro</h2>
+  <form id="formCadastroProf">
+    <input id="pNome" placeholder="Nome" required />
+    <input id="pEmail" type="email" placeholder="Email" required />
+    <input id="pSenha" type="password" placeholder="Senha" required />
+    <button type="submit">Cadastrar Professor</button>
+  </form>
+  <div id="msgCadastroProf"></div>
 
-        <p id="mensagem"></p>
-        <div id="loading" style="display:none;color:blue;font-weight:bold;">Carregando...</div>
-    </div>
-    <script src="script.js"></script>
+  <h2>Professor — Login</h2>
+  <form id="formLoginProf">
+    <input id="lEmail" type="email" placeholder="Email" required />
+    <input id="lSenha" type="password" placeholder="Senha" required />
+    <button type="submit">Login</button>
+  </form>
+  <div id="msgLoginProf"></div>
+
+  <hr>
+
+  <h2>Alunos — Cadastro</h2>
+  <form id="formAluno">
+    <input id="aNome" placeholder="Nome do aluno" required />
+    <input id="aMatricula" placeholder="Matrícula" required />
+    <input id="aTurma" placeholder="Turma" required />
+    <button type="submit">Cadastrar Aluno</button>
+  </form>
+  <div id="msgAluno"></div>
+
+  <h2>Lista de Alunos</h2>
+  <ul id="listaAlunos"></ul>
+
+<script>
+const API = "http://localhost:3000";
+
+// helper
+async function postJson(path, data) {
+  const res = await fetch(API + path, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(data)
+  });
+  const text = await res.text();
+  try { return { status: res.status, body: JSON.parse(text) }; }
+  catch { return { status: res.status, body: text }; }
+}
+
+// função para exibir mensagens temporárias
+function mostrarMensagem(el, html) {
+  el.innerHTML = html;
+  setTimeout(() => {
+    el.innerHTML = '';
+  }, 3000); // limpa após 3 segundos
+}
+
+// Cadastro professor
+document.getElementById('formCadastroProf').addEventListener('submit', async e => {
+  e.preventDefault();
+  const nome = document.getElementById('pNome').value;
+  const email = document.getElementById('pEmail').value;
+  const senha = document.getElementById('pSenha').value;
+  const r = await postJson('/cadastro', { nome, email, senha });
+  const el = document.getElementById('msgCadastroProf');
+  if (r.status === 200) mostrarMensagem(el, '<span class="msg">' + r.body.message + '</span>');
+  else mostrarMensagem(el, '<span class="err">' + (r.body.message || JSON.stringify(r.body)) + '</span>');
+});
+
+// Login professor
+document.getElementById('formLoginProf').addEventListener('submit', async e => {
+  e.preventDefault();
+  const email = document.getElementById('lEmail').value;
+  const senha = document.getElementById('lSenha').value;
+  const r = await postJson('/login', { email, senha });
+  const el = document.getElementById('msgLoginProf');
+  if (r.status === 200) mostrarMensagem(el, '<span class="msg">' + r.body.message + '</span>');
+  else mostrarMensagem(el, '<span class="err">' + (r.body.message || JSON.stringify(r.body)) + '</span>');
+});
+
+// Cadastrar aluno
+document.getElementById('formAluno').addEventListener('submit', async e => {
+  e.preventDefault();
+  const nome = document.getElementById('aNome').value;
+  const matricula = document.getElementById('aMatricula').value;
+  const turma = document.getElementById('aTurma').value;
+  const r = await postJson('/alunos', { nome, matricula, turma });
+  const el = document.getElementById('msgAluno');
+  if (r.status === 201 || r.status === 200) {
+    mostrarMensagem(el, '<span class="msg">Aluno cadastrado com sucesso.</span>');
+    document.getElementById('formAluno').reset();
+    carregarAlunos();
+  } else {
+    mostrarMensagem(el, '<span class="err">' + (r.body.message || JSON.stringify(r.body)) + '</span>');
+  }
+});
+
+async function carregarAlunos() {
+  try {
+    const res = await fetch(API + '/alunos');
+    const lista = await res.json();
+    const ul = document.getElementById('listaAlunos');
+    ul.innerHTML = '';
+    lista.forEach(a => {
+      const li = document.createElement('li');
+      li.textContent = `${a.nome} — Matrícula: ${a.matricula} — Turma: ${a.turma}`;
+      ul.appendChild(li);
+    });
+  } catch (err) {
+    document.getElementById('listaAlunos').innerHTML = '<li>Erro ao carregar alunos</li>';
+  }
+}
+
+carregarAlunos();
+</script>
 </body>
 </html>

@@ -1,3 +1,4 @@
+
 async function cadastrar() {
     const nome = document.getElementById('nome').value;
     const email = document.getElementById('email').value;
@@ -10,7 +11,13 @@ async function cadastrar() {
     });
 
     const data = await res.json();
-    document.getElementById('mensagem').innerText = data.message;
+    const mensagem = document.getElementById('mensagem');
+    mensagem.innerText = data.message;
+
+    
+    setTimeout(() => {
+        mensagem.innerText = '';
+    }, 3000);
 }
 
 async function logar() {
@@ -24,5 +31,11 @@ async function logar() {
     });
 
     const data = await res.json();
-    document.getElementById('mensagem').innerText = data.message;
+    const mensagem = document.getElementById('mensagem');
+    mensagem.innerText = data.message;
+
+    
+    setTimeout(() => {
+        mensagem.innerText = '';
+    }, 3000);
 }

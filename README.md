@@ -5,8 +5,8 @@ Sistema web para cadastro e login de professores, utilizando três camadas: Fron
 
 ## Tecnologias Utilizadas
 - HTML, CSS e JavaScript (Front-end)
-- Node.js, Express, SQLite3, bcrypt, cors (Back-end)
-- Banco de dados SQLite
+- Node.js, Express, MongoDB3, bcrypt, cors (Back-end)
+- Banco de dados MongoDB
 
 ## Como rodar o projeto
 1. Clone o repositório do GitHub.
@@ -28,14 +28,16 @@ Sistema web para cadastro e login de professores, utilizando três camadas: Fron
 7. Teste o cadastro e login de professores.
 
 ## Lista de integrantes
-- [Seu Nome] - [Seu RA]
-- [Adicione os demais integrantes aqui]
+- [Nome: Selma Fénica Macaia] - [RA:2303280]
 
 ## Link do board do projeto
-- [Cole aqui o link do Trello/Jira/GitHub Projects]
+- [https://trello.com/b/Qmppr1Yn/projetodafaculdade]
+
+## Link do Github
+- [https://github.com/Selmamacaia/ProjetoFinalDaFaculdade]
 
 ## Link do vídeo da AC1
-- [Cole aqui o link do vídeo da apresentação]
+- []
 
 ---
-Caso precise de mais informações, consulte o professor ou o board do projeto.
+Caso precise de mais informações, consulte o board do projeto.

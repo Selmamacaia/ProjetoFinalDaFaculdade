@@ -1,28 +1,15 @@
+# Dependências
 node_modules/
-dist/
-.env
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Sistema
 .DS_Store
-*.log
-.vscode/
-backend/database.db
-
-# Build e cache
-build/
-out/
-.cache/
-
-# Configuração de editores
-.idea/
-
-# Arquivos de sistema
 Thumbs.db
-ehthumbs.db
 
-# Arquivos temporários e backup
-*.tmp
-*.bak
-*~
+# Ambiente
+.env
 
-# Lock files (opcional)
-# package-lock.json
-yarn.lock
