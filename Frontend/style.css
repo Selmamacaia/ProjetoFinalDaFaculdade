@@ -1,11 +1,155 @@
+.hero-wrapper { max-width: 900px; margin: 0 auto; }
+
+/* utility: center text */
+.center { text-align: center; }
+
+/* Back control (Voltar / Home) used on subpages */
+.back-row { display:flex; gap:10px; justify-content:center; align-items:center; margin-top:12px }
+.back-row .back-btn { background: rgba(255,255,255,0.95); color:#2c3e50; padding:8px 12px; border-radius:8px; border:1px solid rgba(0,0,0,0.06); cursor:pointer; box-shadow:0 6px 18px rgba(18,38,63,0.06) }
+.back-row .back-btn:hover { transform:translateY(-2px); box-shadow:0 10px 26px rgba(18,38,63,0.09) }
+.back-row .back-link { color:var(--muted); text-decoration:underline; font-size:14px }
+
 body {
   font-family: Arial, sans-serif;
-  background-color: #f4f6f8;
   color: #333;
   padding: 40px 20px;
-  max-width: 800px;
+  max-width: 1000px;
   margin: 0 auto;
+  /* background image */
+  background-image: url('assets/bg-project.svg');
+  background-size: cover; /* fallback */
+  background-position: 18% 22%; /* slightly offset so the main artwork is visible */
+  background-repeat: no-repeat;
+  position: relative;
+  background-color: #eaf6ff; /* subtle fallback */
 }
+
+/* overlay for readability */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  /* stronger subtle darkening near top-left where art sits, lighter on bottom-right */
+  background: radial-gradient(circle at 18% 22%, rgba(0,0,0,0.18), rgba(0,0,0,0.04) 30%, rgba(255,255,255,0.02) 70%);
+  pointer-events: none;
+}
+
+/* Utility button used on launcher */
+.btn {
+  display:inline-block;
+  padding:10px 14px;
+  background:#3498db;
+  color:#fff;
+  border-radius:6px;
+  text-decoration:none;
+}
+.btn:hover { background:#2980b9 }
+
+/* small card helper class */
+.card { background:rgba(255,255,255,0.96); padding:18px; border-radius:8px; box-shadow:0 6px 18px rgba(18,38,63,0.08); max-width:420px; margin:0 auto; backdrop-filter: blur(4px); }
+
+/* Títulos */
+h1, h2 {
+  text-align: center;
+  color: #2c3e50;
+  margin-bottom: 20px;
+}
+
+/* Ensure launcher placed inside header sits directly below title and centered */
+header .launcher{margin-top:12px;display:flex;justify-content:center;gap:12px;flex-wrap:wrap}
+header .launcher .btn{min-width:140px}
+
+/* dashboard-specific spacing: give buttons more breathing room inside the card */
+.card .launcher{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:18px;align-items:center;justify-items:center;width:100%;max-width:520px;margin:8px auto}
+.card .launcher .btn{padding:12px 18px;border-radius:8px;width:100%;max-width:220px}
+.card > div button.btn{margin-top:12px}
+
+/* Formulários como cartões */
+form {
+  background-color: rgba(255,255,255,0.98);
+  padding: 20px;
+  margin-bottom: 30px;
+  border-radius: 8px;
+  box-shadow: 0 6px 18px rgba(18,38,63,0.06);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Campos de entrada */
+input {
+  padding: 10px;
+  margin: 8px 0;
+  width: 100%;
+  max-width: 400px;
+  border: 1px solid #cfdbe8;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+/* Botões */
+button {
+  padding: 10px 16px;
+  background-color: #3498db;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-top: 10px;
+  font-size: 14px;
+}
+
+button:hover {
+  background-color: #2980b9;
+}
+
+/* Mensagens */
+.msg {
+  margin: 8px 0;
+  color: green;
+  font-weight: bold;
+}
+
+.err {
+  color: red;
+  font-weight: bold;
+}
+
+/* Lista de alunos */
+ul#listaAlunos {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+ul#listaAlunos li {
+  background-color: rgba(234,242,255,0.9);
+  margin: 6px 0;
+  padding: 10px;
+  border-radius: 6px;
+}
+
+/* Responsive background positioning helpers */
+@media (min-width: 1200px) {
+  body { background-attachment: fixed; background-position: 14% 20%; background-size: 1200px auto; }
+}
+
+@media (max-width: 900px) {
+  body { background-position: center top; background-size: 140% auto; padding: 24px 16px; }
+  .card { max-width: 92%; }
+}
+
+@media (max-width: 480px) {
+  body { background-position: center -40px; background-size: 180% auto; padding: 18px 12px; }
+  h1, h2 { font-size: 20px; }
+  input { font-size: 15px; }
+}
+
+/* Utility: stronger readable container for small screens */
+.hero-wrapper { max-width: 900px; margin: 0 auto; }
+.btn:hover { background:#2980b9 }
+
+/* small card helper class */
+.card { background:#fff; padding:18px; border-radius:8px; box-shadow:0 2px 8px rgba(0,0,0,0.06); max-width:420px; margin:0 auto; }
 
 /* Títulos */
 h1, h2 {
@@ -16,7 +160,7 @@ h1, h2 {
 
 /* Formulários como cartões */
 form {
-  background-color: #ffffff;
+  background-color: rgba(255,255,255,0.95);
   padding: 20px;
   margin-bottom: 30px;
   border-radius: 8px;

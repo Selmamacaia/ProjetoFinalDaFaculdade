@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8" />
+  <title>Registro de notas</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <header><h1>Registro de notas</h1></header>
+    <main>
+      <div class="back-row">
+        <button class="back-btn" onclick="history.back(); return false;">Voltar</button>
+        <a class="back-link" href="index.html">Home</a>
+      </div>
+      <div class="card">
+        <form id="formNota">
+          <label for="alunoNota">Aluno (nome)</label>
+          <input id="alunoNota" />
+          <label for="discNota">Disciplina</label>
+          <input id="discNota" />
+          <label for="valorNota">Nota</label>
+          <input id="valorNota" type="number" min="0" max="10" step="0.1" />
+          <button type="submit">Registrar nota</button>
+        </form>
+        <div id="msgNota" class="msg"></div>
+      </div>
+
+      <div class="card">
+        <h3>Notas registradas</h3>
+        <ul id="listaNotas"></ul>
+      </div>
+    </main>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>

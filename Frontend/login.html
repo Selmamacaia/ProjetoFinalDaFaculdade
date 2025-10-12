@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8" />
+  <title>Login - AcadSys</title>
+  <link rel="stylesheet" href="style.css">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+</head>
+<body>
+  <main>
+    <h1>Login</h1>
+    <form id="formLoginPage" class="card">
+      <input id="loginEmail" type="email" placeholder="Email" required />
+      <input id="loginSenha" type="password" placeholder="Senha" required />
+      <button type="submit">Entrar</button>
+    </form>
+    <div id="msgLoginPage" class="msg"></div>
+    <div class="back-row">
+      <button class="back-btn" onclick="history.back(); return false;">Voltar</button>
+      <a class="back-link" href="index.html">Home</a>
+    </div>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8" />
+  <title>Área do Professor - AcadSys</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Área do Professor</h1>
+      <p class="center">Painel principal</p>
+    </header>
+
+    <div class="back-row">
+      <button class="back-btn" onclick="history.back(); return false;">Voltar</button>
+      <a class="back-link" href="index.html">Home</a>
+    </div>
+
+    <main>
+      <div id="not-logged" class="card center">
+        <p>Você não está logado. <a href="login.html">Faça login</a> para acessar as funcionalidades do professor.</p>
+      </div>
+
+      <div id="dashboard" class="card center" style="display:none;">
+        <p>Bem-vindo, professor.</p>
+        <div class="launcher" style="justify-content:center; margin-top:12px;">
+          <a class="btn" href="disciplinas.html">Elaboração e pesquisa</a>
+          <a class="btn" href="disciplinas.html">Cadastro de disciplinas</a>
+          <a class="btn" href="registro_notas.html">Registro de notas</a>
+          <a class="btn" href="registro_frequencia.html">Registro de frequência</a>
+        </div>
+        <div style="margin-top:14px;">
+          <button id="btnLogout" class="btn" style="background:#c0392b">Sair</button>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script>
+    const token = localStorage.getItem('token');
+    const professor = localStorage.getItem('professor');
+    const dash = document.getElementById('dashboard');
+    const notLogged = document.getElementById('not-logged');
+    if (token || professor) {
+      dash.style.display = 'block';
+      notLogged.style.display = 'none';
+    } else {
+      dash.style.display = 'none';
+      notLogged.style.display = 'block';
+    }
+    const btn = document.getElementById('btnLogout');
+    if (btn) btn.addEventListener('click', () => { localStorage.removeItem('token'); window.location.href = 'index.html'; });
+  </script>
+</body>
+</html>

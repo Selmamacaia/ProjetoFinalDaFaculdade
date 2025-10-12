@@ -3,6 +3,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
 
 const app = express();
 app.use(cors());
@@ -13,6 +14,8 @@ app.use((req, res, next) => {
   console.log(new Date().toISOString(), req.method, req.url);
   next();
 });
+
+const JWT_SECRET = process.env.JWT_SECRET || 'dev-secret';
 
 // Conexão com MongoDB
 const MONGO_URI = process.env.MONGO_URI || 'mongodb://localhost:27017/projetofaculdade';
@@ -71,7 +74,9 @@ app.post('/login', async (req, res) => {
     const ok = await bcrypt.compare(senha, prof.senha);
     if (!ok) return res.status(401).json({ message: 'Email ou senha incorretos.' });
     const { senha: s, ...profPublic } = prof.toObject();
-    return res.json({ message: 'Login realizado com sucesso!', professor: profPublic });
+    // sign a JWT and return it together with professor public data
+    const token = jwt.sign({ id: prof._id, role: 'professor' }, JWT_SECRET, { expiresIn: '8h' });
+    return res.json({ message: 'Login realizado com sucesso!', token, professor: profPublic });
   } catch (err) {
     console.error(err);
     return res.status(500).json({ message: 'Erro no servidor: ' + err.message });

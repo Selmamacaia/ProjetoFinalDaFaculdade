@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8" />
+  <title>Registro de frequência</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <header><h1>Registro de frequência</h1></header>
+    <main>
+      <div class="back-row">
+        <button class="back-btn" onclick="history.back(); return false;">Voltar</button>
+        <a class="back-link" href="index.html">Home</a>
+      </div>
+      <div class="card">
+        <form id="formFrequencia">
+          <label for="alunoFreq">Aluno (nome)</label>
+          <input id="alunoFreq" />
+          <label for="discFreq">Disciplina</label>
+          <input id="discFreq" />
+          <label for="presenteFreq">Presente?</label>
+          <select id="presenteFreq">
+            <option value="sim">Sim</option>
+            <option value="nao">Não</option>
+          </select>
+          <button type="submit">Registrar frequência</button>
+        </form>
+        <div id="msgFreq" class="msg"></div>
+      </div>
+
+      <div class="card">
+        <h3>Frequências registradas</h3>
+        <ul id="listaFrequencias"></ul>
+      </div>
+    </main>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>

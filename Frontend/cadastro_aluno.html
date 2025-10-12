@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8" />
+  <title>Cadastro Aluno - AcadSys</title>
+  <link rel="stylesheet" href="style.css">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+</head>
+<body>
+  <main>
+    <h1>Cadastro de Aluno</h1>
+    <form id="formCadastroAlunoPage" class="card">
+      <input id="nomeAluno" placeholder="Nome do aluno" required />
+      <input id="matriculaAluno" placeholder="Matrícula" required />
+      <input id="turmaAluno" placeholder="Turma" required />
+      <button type="submit">Cadastrar</button>
+    </form>
+    <div id="msgCadastroAlunoPage" class="msg"></div>
+    <div class="back-row">
+      <button class="back-btn" onclick="history.back(); return false;">Voltar</button>
+      <a class="back-link" href="index.html">Home</a>
+    </div>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>
